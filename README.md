@@ -7,11 +7,13 @@ Golang package write-up
 
 github.com
 ----------
-總所皆知的git倉儲平台，
+總所皆知的git倉儲平台。[github.com][]
+
+[github.com]: https://github.com/
 
 Travis-Ci
 ---------
-可以幫助自己測試寫好的程式，當然測試單元還是要自己寫。
+可以幫助自己測試/安裝寫好的程式，當然測試單元還是要自己寫，主要目的在於幫忙檢查套件是否能正確安裝。
 
 首先需要先建立Travis-Ci的帳號，到[Travis-Ci][]使用github帳號登入，接著在登入畫面選擇需要使用Travis-Ci的github專案，若是沒有看到專案可以點選右上角的`Sync now`按鈕，如下圖所示：
 
@@ -35,9 +37,6 @@ go:
  - release
  - tip
 
-install:
- - if ! go get code.google.com/p/go.tools/cmd/cover; then go get golang.org/x/tools/cmd/cover; fi
-
 script:
  - go test -v ./...
 ```
@@ -58,6 +57,11 @@ coveralls
 
 在[Coveralls][]選擇完專案之後，需要針對專案的`.travis.yml`做些許修改，加上使用[Coveralls][]的設定。
 
+1. 在`install`時安裝檢查測試覆蓋率的套件`gocov`以及將結果送至[Coveralls][]的`goveralls`
+2. 在成功執行之後使用`goveralls`檢查測試覆蓋率
+
+修改後完整的`.travis.yml`檔案內容如下：
+
 ```
 language: go
 go:
@@ -77,6 +81,5 @@ script:
 ```
 
 腳本新增的部分主要是為了檢查專案測試的覆蓋率並將計算結果傳至[Coveralls][]
-	
 
 [Coveralls]: https://coveralls.io/
