@@ -7,7 +7,7 @@ Golang package write-up
 
 github.com
 ----------
-總所皆知的git倉儲平台。[github.com][]
+眾所皆知的git倉儲平台。[github.com][]
 
 [github.com]: https://github.com/
 
